@@ -1,0 +1,98 @@
+/* General styling for the feedback area */
+.feedback {
+    font-style: italic;
+    display: block;  /* This ensures feedback appears on a new line */
+    margin-top: 5px; /* Adds a little space above the feedback for better visibility */
+    color: green;
+}
+
+
+#points-and-badges-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;           /* Display points and badges side by side */
+    flex-direction: column;
+    align-items: center;      /* Vertically center align the badges and points */
+    overflow: hidden; /* Prevent overflow */
+}
+
+
+#points-container {
+    /* top: 10px; */
+    right: 20px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+#totalPoints {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px; /*space between image and text*/
+    
+}
+
+#coin{
+    width: 30px; /* Set width to an appropriate size */
+    height: 30px; /* Set height to an appropriate size */
+    vertical-align: left;
+}
+
+#badge-count {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px; 
+}
+
+#badgeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#badge {
+    top: 10px;
+    width: 35px;            /* Same width as the coin */
+    height: 35px;           /* Same height as the coin */
+    vertical-align: middle;
+}
+
+#markComplete {
+    background-color: #28a745; /* Green background to differentiate */
+    color: white;              /* White text */
+    padding: 8px 15px;         /* Add padding */
+    border: none;              
+    border-radius: 5px;         /* Rounded corners */
+    font-size: 16px;           
+    cursor: pointer;            /* Show pointer on hover */
+    float: right;               /* Align to the right */
+    margin: 10px 0 20px 10px;      /* Margin for spacing */
+}
+
+#markComplete:hover {
+    background-color: #218838;  /* Darker green on hover */
+}
+
+input[type="button"] {
+    background-color: #9c5ce5; /* Blue background */
+    color: white;              /* White text */
+    padding: 5px 15px;         /* Add some padding */
+    border: none;              /* Remove border */
+    border-radius: 3px;        /* Slightly rounded corners */
+    font-size: 14px;           /* Font size */
+    cursor: pointer;           /* Pointer on hover */
+    margin-top: 10px;          /* Add space at the top */
+}
+
+/* Change background color on hover */
+input[type="button"]:hover {
+    background-color: #7c41bf; /* Darker blue */
+}

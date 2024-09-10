@@ -1,0 +1,218 @@
+.. Python e-textbook documentation master file, created by
+   sphinx-quickstart on Sun Mar 24 17:24:39 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. raw:: html
+
+   <script id="pagemeta" type="application/json">
+     { "ebook": "python", "component": "nested_while_loops" } 
+   </script>
+
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> 
+   <script>
+      function triggerConfetti() {
+         confetti({
+            angle: 90,
+            spread: 45,
+            startVelocity: 45,
+            particleCount: 50,
+            origin: { y: 0.6 }
+      });
+   }
+   </script>
+
+   <div id="maxPoints" data-max-points="20"></div>
+   <div id= 'points-and-badges-container'>
+      <div id="points-container">
+            <img id="coin" src="_static/coin.png" alt="coin_icon"/>
+            <div id="totalPoints">XP: 0</div>
+      </div>
+   
+      <div id="badgeContainer">
+         <img id="badge" src="_static/badge.png" alt="badge_icon"/>
+         <!-- Badges will be displayed here -->
+         <div id="badge-count">Badges: 0</div>
+      </div>
+   </div>
+
+2. More About While Loops
+::::::::::::::::::::::::::::::::
+
+**Nested While Loops** 
+
+A nested loop means a loop inside another loop. Think of it like a box within a box. But in our case, we have an outer while loop and in that we have an inner while loop. 
+The inner loop runs completely for each iteration of the outer loop. This is useful for situations where you need to perform a repetitive task that itself contains repetitive tasks. 
+
+
+**Why use nested while loops?** 
+
+Nested while loops are particularly useful for:
+
+* Iterating over multi-dimensional data structures, like matrices.
+
+* Performing repetitive tasks that involve multiple layers of iteration.
+
+
+.. code-block:: python
+
+      outer loop while condition:
+        inner loop while condition:
+            # statement inside inner while loop
+        # statement inside outer while loop
+
+----------------------------
+Worked Example 1: 
+----------------------------
+Let's create a simple program that uses a nested while loop to print the following pattern:
+
+1 1
+
+1 2
+
+2 1
+
+2 2
+
+.. code-block:: python
+
+    i = 1
+    while i < 3:
+        j = 1
+        while j < 3:
+            print(i, j)
+            j += 1
+        i += 1
+        
+
+
+This code initializes the variable `i` to 1 and enters a while loop that continues as long as `i` is less than 3. 
+Within this loop, another variable `j` is set to 1, and an inner while loop runs as long as `j` is less than 3. 
+Each iteration of the inner loop prints the current values of `i` and `j`, then increments `j` by 1. 
+After the inner loop finishes, `i` is incremented by 1. When `i` reaches 3, the outer loop stops, ending the program.
+
+-----------------------------------
+Problem 1: Loop Iteration Count 
+-----------------------------------
+Consider the following code block:
+
+.. code-block:: python
+
+   i = 0
+   while i < 3:
+        j = 0
+        while j < 4:
+            print(i,j)
+            j += 1
+        i += 1
+    
+.. raw:: html
+
+   <div class="mcq">
+      <p>How many times will the inner loop execute in the code block? (5 pts)</p>
+      <form name="Q1" id="Q1" data-component="loop-count" autocomplete="off">
+      <input type="radio" id="Q1A1" name="Q1" value=""><label for="Q1A1">3</label> <span id="Q1A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A2" name="Q1" value=""><label for="Q1A2">4</label> <span id="Q1A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A3" name="Q1" value=""><label for="Q1A3">7</label> <span id="Q1A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A4" name="Q1" value="correct"><label for="Q1A4">12</label> <span id="Q1A4-feedback" class="feedback"> </span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q1')"><br>
+      </form>
+      <script id="Q1-answers" type="application/json"> 
+      [   
+      { "ansid":"Q1A1", "answer": "3", "feedback": "Incorrect. The outer loop runs 3 times, and the inner loop runs 4 times for each outer loop iteration.", "result": "", "points": 0} ,  
+      { "ansid":"Q1A2", "answer": "4", "feedback": "Incorrect. Each iteration of the outer loop runs the inner loop 4 times, and the outer loop itself runs 3 times. Thus, the total iterations are not just 4.", "result": "","points": 0} ,  
+      { "ansid":"Q1A3", "answer": "7", "feedback": "Incorrect. While the loop may seem complex, remember that the outer loop runs 3 times and the inner loop runs 4 times for each outer loop iteration.", "result": "", "points": 0} ,  
+      { "ansid":"Q1A4", "answer": "12", "feedback": "Correct! The outer loop runs 3 times, and the inner loop runs 4 times for each outer loop iteration, making a total of 12 iterations.", "result": "correct", "points": 5} 
+      ]
+      </script>
+   </div>
+
+
+--------------------------------------
+Problem 2: Debugging Nested Loops 
+--------------------------------------
+
+.. code-block:: python
+
+   i = 0
+   while i < 3:
+      j = 0
+      while j < 3  
+        print(i,j)
+        j += 1
+      i += 1
+
+.. raw:: html
+
+   <div class="mcq">
+      <p>What is the error in the code snippet, and how can it be fixed? <code>i</code> when the sum first exceeds 100? (5 pts)</p>
+
+      <form name="Q2" id="Q2" data-component="loop-count" autocomplete="off">
+      <input type="radio" id="Q2A1" name="Q2" value=""><label for="Q2A1">The condition i < 3 should be i <=3</label> <span id="Q2A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A2" name="Q2" value=""><label for="Q2A2">i should be initialized to 1</label> <span id="Q2A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A3" name="Q2" value="correct"><label for="Q2A3">Missing colon (:) after while j < 3</label> <span id="Q2A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A4" name="Q2" value=""><label for="Q2A4">There is no error.</label> <span id="Q2A4-feedback" class="feedback"> </span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q2')"><br>
+      </form>
+      <script id="Q2-answers" type="application/json">
+      [
+         {"ansid":"Q2A1", "answer":"TThe condition i < 3 should be i <=3", "feedback": "Inorrect!", "result": "", "points": 0},
+         {"ansid":"Q2A2", "answer":"i should be initialized to 1", "feedback": "Incorrect!", "result": "", "points": 0},
+         {"ansid":"Q2A3", "answer":"Missing colon (:) after while j < 3", "feedback": "Correct!", "result": "correct", "points": 5},
+         {"ansid":"Q2A4", "answer":"There is no error.", "feedback": "Incorrect. Look closely.", "result": "", "points": 0}
+      ]
+      </script>
+   </div>
+
+---------------------------------------
+Problem 3: Understanding Nested Loops
+---------------------------------------
+
+.. code-block:: python
+
+   for i in range(2): 
+      for j in range(2): 
+         for k in range(2): 
+            print(i, j, k)
+
+.. raw:: html
+
+   <div class="mcq"> 
+      <p>How many times will the inner-most loop (printing i, j, k) execute? (10 pts)</p>
+      <form name="Q3" id="Q3" data-component="nested-loop-count" autocomplete="off">
+      <input type="radio" id="Q3A1" name="Q3" value=""><label for="Q3A1">2</label> <span id="Q3A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A2" name="Q3" value=""><label for="Q3A2">4</label> <span id="Q3A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A3" name="Q3" value=""><label for="Q3A3">8</label> <span id="Q3A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A4" name="Q3" value="correct"><label for="Q3A4">16</label> <span id="Q3A4-feedback" class="feedback"> </span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q3')"><br>
+      </form>
+
+      <script id="Q3-answers" type="application/json">
+      [
+         {"ansid":"Q3A1", "answer":"2", "feedback": "Incorrect, each loop runs multiple times.", "result": "", "points": 0},
+         {"ansid":"Q3A2", "answer":"4", "feedback": "Incorrect, you need to consider the total number of iterations.", "result": "", "points": 0},
+         {"ansid":"Q3A3", "answer":"8", "feedback": "Almost there, but it's a nested loop with three levels.", "result": "", "points": 0},
+         {"ansid":"Q3A4", "answer":"16", "feedback": "Correct! The outer loop runs 2 times, middle loop 2 times, and inner loop 2 times, resulting in 2x2x2=8 total iterations.", "result": "correct", "points": 10}
+      ]
+      </script>
+   </div>
+
+.. raw:: html
+
+   <div>
+      <button id="markComplete" onclick="markModuleAsComplete()">Mark as Complete</button>
+   </div>
+
+   <script src="_static/ebook.js"></script>
+   <link rel="stylesheet" type="text/css" href="_static/style.css" />
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

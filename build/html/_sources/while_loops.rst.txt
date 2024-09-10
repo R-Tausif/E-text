@@ -1,0 +1,190 @@
+.. Python e-textbook documentation master file, created by
+   sphinx-quickstart on Sun Mar 24 17:24:39 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. raw:: html
+
+   <script id="pagemeta" type="application/json">
+     { "ebook": "python", "component": "while_loops" } 
+   </script>
+
+
+1. Introduction to loops
+::::::::::::::::::::::::::::::::
+
+**What is a loop?** 
+
+A loop is a sequence of instructions that is continually repeated until a certain condition is reached. It is known as a control structure. Loops can be divided into 2 types:
+
+* Count-controlled (Definite loops): These have a predeterminded number of iterations. For example, running a loop 5 times to print the numbers 1 to 5.
+
+* Event-controlled (Indefinite loops): These iterate an unspecified number of times, looping as long as a given condition is true. For example, scanning customers before they leave a shop. We don't know how many customers will be there to scan when the shop just opens. 
+
+
+**Introduction to While loops**
+
+A while loop in Python repeats a block of code as long as a specified condition is true. It's a useful tool for making a program run until a certain condition is met. 
+The while loop starts with the keyword 'while', followed by the condition and then the code block to be executed.  The control variable must be initialized before entering the loop, and it must be updated inside the loop body. 
+
+.. code-block:: python
+
+      while condition:
+         # code to execute repeatedly
+         # this forms the body of the while loop
+
+The `condition` is evaluated before each iteration, and if it's **True**, the code block inside the loop executes. When the condition becomes **False**, the loop stops.
+
+----------------------------
+Worked Example 1: 
+----------------------------
+Let's create a simple program that uses a while loop to print numbers from 1 to 3.
+
+.. code-block:: python
+
+      number = 1
+      while number <= 3:
+         print(number)
+         number = number + 1
+
+
+
+This code snippet sets a variable `number` to 1 and then enters a while loop, which 
+continues as long as `number` is less than 3. Inside the loop, it prints the current value of `number` and then increments
+`number` by 1. When `number` reaches a value more than 3, the loop stops and the program ends.
+
+
+
+----------------------------
+Worked Example 2: 
+----------------------------
+Let's create another simple program that uses a while loop to count down from 5 to 1.
+
+.. code-block:: python
+
+      count = 5
+      while count > 5:
+         print(count)
+         count -= 1
+
+      print("Count down completed!") 
+
+This code snippet sets a variable `count` to 5 and then enters a while loop, which 
+continues as long as `count` is greater than 0. Inside the loop, it prints the current value of `count` and then decrements
+`count` by 1. When `count` reaches 0, the loop stops and the program prints "Count down completed!".
+
+
+
+----------------------------
+Problem 1: Reading Code 
+----------------------------
+Consider the following snippet of code. What will it print?
+
+.. code-block:: python
+
+   x = 3
+   while x < 8:
+      print('Python is awesome!')
+      x += 2
+
+.. raw:: html
+
+   <div class="mcq">
+      <p>How many times will "Python is awesome!" be printed?</p>
+      <form name="Q1" id="Q1" data-component="loop-count" autocomplete="off">
+      <input type="radio" id="Q1A1" name="Q1" value=""><label for="Q1A1">2</label> <span id="Q1A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A2" name="Q1" value="correct"><label for="Q1A2">3</label> <span id="Q1A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A3" name="Q1" value=""><label for="Q1A3">4</label> <span id="Q1A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q1A4" name="Q1" value=""><label for="Q1A4">5</label> <span id="Q1A4-feedback" class="feedback"> </span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q1')"><br>
+      </form>
+      <script id="Q1-answers" type="application/json"> 
+      [   
+      { "ansid":"Q1A1", "answer": "2", "feedback": "Incorrect. Remember, the loop increments by 2 starting from 3 and checks the condition before each iteration.", "result": ""  } ,  
+      { "ansid":"Q1A2", "answer": "3", "feedback": "Correct! The loop starts at 3, increments by 2 each time, and stops before reaching 8.", "result": "correct"  } ,  
+      { "ansid":"Q1A3", "answer": "4", "feedback": "Incorrect. Calculate how many iterations occur with the loop starting at 3 and increasing by 2 until it's less than 8.", "result": ""  } ,  
+      { "ansid":"Q1A4", "answer": "5", "feedback": "Wrong. Make sure to count the number of iterations based on the loop's starting point and increment.", "result": ""  } 
+      ]
+      </script>
+   </div>
+
+
+
+--------------------------------------
+Problem 2: Analyzing the value of `i` 
+--------------------------------------
+
+.. code-block:: python
+
+   total = 0
+   i = 0
+   while True:
+      total += i
+      if total > 100:
+         break
+      i += 1
+   print("The final value of i when the sum first exceeds 100 is:", i)
+
+.. raw:: html
+
+   <div class="mcq">
+      <p>Given the Python code that calculates the cumulative sum of integers until the sum exceeds 100, what is the final value of <code>i</code> when the sum first exceeds 100?</p>
+
+      <form name="Q2" id="Q2" data-component="loop-count" autocomplete="off">
+      <input type="radio" id="Q2A1" name="Q2" value="correct"><label for="Q2A1">14</label> <span id="Q2A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A2" name="Q2" value=""><label for="Q2A2">15</label> <span id="Q2A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A3" name="Q2" value=""><label for="Q2A3">16</label> <span id="Q2A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A4" name="Q2" value=""><label for="Q2A4">17</label> <span id="Q2A4-feedback" class="feedback"> </span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q2')"><br>
+      </form>
+      <script id="Q2-answers" type="application/json">
+      [
+         {"ansid":"Q2A1", "answer":"14", "feedback": "Correct! The loop adds up to 105 when i is 14 and then breaks."},
+         {"ansid":"Q2A2", "answer":"15", "feedback": "Incorrect. The loop already broke when i was 14."},
+         {"ansid":"Q2A3", "answer":"16", "feedback": "Incorrect. The sum exceeds 100 before this point."},
+         {"ansid":"Q2A4", "answer":"17", "feedback": "Incorrect. The sum exceeds 100 before this point."}
+      ]
+      </script>
+   </div>
+
+
+------------------------------------------------
+Problem 3: True/False Question on While loop 
+------------------------------------------------
+
+.. raw:: html
+
+   <div class="mcq">
+   <p>True or False: A <code>while</code> loop in Python will always execute at least once before checking its condition.</p>
+   <form name="Q3" id="Q3" data-component="loop-true-false" autocomplete="off">
+      <input type="radio" id="Q3A1" name="Q3" value=""><label for="Q3A1">True</label> <span id="Q3A1-feedback" class="feedback"></span><br>
+      <input type="radio" id="Q3A2" name="Q3" value="correct"><label for="Q3A2">False</label> <span id="Q3A2-feedback" class="feedback"></span><br>
+      <input type="button" value="Check" onclick="sendmcq('Q3')"><br>
+   </form>
+   <script id="Q3-answers" type="application/json">
+   [
+      {"ansid":"Q3A1", "answer":"True", "feedback": "Incorrect. The while loop in Python checks its condition before the first iteration."},
+      {"ansid":"Q3A2", "answer":"False", "feedback": "Correct! A while loop in Python checks its condition before executing the loop body for the first time."}
+   ]
+   </script>
+   </div>
+
+
+
+.. raw:: html
+
+   <script src="_static/ebook.js"></script>
+   <link rel="stylesheet" type="text/css" href="_static/style.css"/>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   nested_while
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
