@@ -22,7 +22,7 @@
    }
    </script>
 
-   <div id="maxPoints" data-max-points="20"></div>
+   <div id="maxPoints" data-max-points="15"></div>
    <div id= 'points-and-badges-container'>
       <div id="points-container">
             <img id="coin" src="_static/coin.png" alt="coin_icon"/>
@@ -36,6 +36,8 @@
       </div>
    </div>
 
+.. include:: user_profile.rst
+   
 2. More About While Loops
 ::::::::::::::::::::::::::::::::
 
@@ -170,32 +172,135 @@ Problem 3: Understanding Nested Loops
 
 .. code-block:: python
 
-   for i in range(2): 
-      for j in range(2): 
-         for k in range(2): 
-            print(i, j, k)
+   i = 0
+   count = 0
+   fruits = ['apple', 'orange', 'kiwi', 'strawberry', 'pineapple']
+
+   while i < len(fruits):
+      fruit = fruits[i]
+      j = 0
+      while ____________________:  # This is the blank condition
+         if fruit[j] == 'e':
+            count += 1
+         j += 1
+      i += 1
+
+   print("The number of e's in the list is: ", count)
 
 .. raw:: html
 
    <div class="mcq"> 
-      <p>How many times will the inner-most loop (printing i, j, k) execute? (10 pts)</p>
-      <form name="Q3" id="Q3" data-component="nested-loop-count" autocomplete="off">
-      <input type="radio" id="Q3A1" name="Q3" value=""><label for="Q3A1">2</label> <span id="Q3A1-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q3A2" name="Q3" value=""><label for="Q3A2">4</label> <span id="Q3A2-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q3A3" name="Q3" value=""><label for="Q3A3">8</label> <span id="Q3A3-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q3A4" name="Q3" value="correct"><label for="Q3A4">16</label> <span id="Q3A4-feedback" class="feedback"> </span><br>
+      <p>What is the correct condition for the second while loop (10 pts)</p>
+      <form name="Q3" id="Q3" data-component="nested-loop-condition" autocomplete="off">
+      <input type="radio" id="Q3A1" name="Q3" value=""><label for="Q3A1">while j < i</label> <span id="Q3A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A2" name="Q3" value=""><label for="Q3A2">while j < len(fruit)</label> <span id="Q3A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A3" name="Q3" value=""><label for="Q3A3">while j <= len(fruit)</label> <span id="Q3A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q3A4" name="Q3" value="correct"><label for="Q3A4">while j < len(fruits)</label> <span id="Q3A4-feedback" class="feedback"> </span><br>
       <input type="button" value="Check" onclick="sendmcq('Q3')"><br>
       </form>
 
       <script id="Q3-answers" type="application/json">
       [
-         {"ansid":"Q3A1", "answer":"2", "feedback": "Incorrect, each loop runs multiple times.", "result": "", "points": 0},
-         {"ansid":"Q3A2", "answer":"4", "feedback": "Incorrect, you need to consider the total number of iterations.", "result": "", "points": 0},
-         {"ansid":"Q3A3", "answer":"8", "feedback": "Almost there, but it's a nested loop with three levels.", "result": "", "points": 0},
-         {"ansid":"Q3A4", "answer":"16", "feedback": "Correct! The outer loop runs 2 times, middle loop 2 times, and inner loop 2 times, resulting in 2x2x2=8 total iterations.", "result": "correct", "points": 10}
+         {"ansid":"Q3A1", "answer":"while j < i", "feedback": "Incorrect, you're comparing j to i but should be checking the length of the fruit string.", "result": "", "points": 0},
+         {"ansid":"Q3A2", "answer":"while j < len(fruit)", "feedback": "Correct! You need to iterate over the characters in each fruit name, so `j < len(fruit)` is the right condition.", "result": "correct", "points": 5},
+         {"ansid":"Q3A3", "answer":"while j <= len(fruit)", "feedback": "Incorrect, this would cause the loop to run one extra time, potentially leading to an error.", "result": "", "points": 0},
+         {"ansid":"Q3A4", "answer":"1while j < len(fruits)", "feedback": "Incorrect, len(fruits) refers to the number of fruits, not the length of the current fruit name.", "result": "", "points": 0}
       ]
       </script>
    </div>
+
+
+
+-----------------------------
+Check your understanding
+-----------------------------
+
+.. raw:: html
+
+   <!-- Self-Rating Section -->
+   <div class="self-rating">
+      <p>How confident are you in your understanding of loops?</p>
+
+      <form id="self-rating-form" style="display: flex; justify-content: space-between; align-items: center;">
+         <input type="radio" id="rating-1" name="knowledge-rating" value="1">
+         <label for="rating-1">1 - Not confident</label>
+
+         <input type="radio" id="rating-2" name="knowledge-rating" value="2">
+         <label for="rating-2">2 - Slightly confident</label>
+
+         <input type="radio" id="rating-3" name="knowledge-rating" value="3">
+         <label for="rating-3">3 - Moderately confident</label>
+
+         <input type="radio" id="rating-4" name="knowledge-rating" value="4">
+         <label for="rating-4">4 - Very confident</label>
+
+         <input type="radio" id="rating-5" name="knowledge-rating" value="5">
+         <label for="rating-5">5 - Extremely confident</label>
+
+         <button type="button" onclick="submitRating()" style="background-color: #9c5ce5; /* Blue background */
+            color: white;
+            cursor: pointer;
+            border: none; 
+            border-radius: 3px; 
+            margin-top: 10px;">Submit Rating</button>
+      </form>
+
+      <p id="rating-result"></p>
+   </div>
+
+.. raw:: html
+
+   <br><br>
+
+
+.. code-block:: python
+
+   # Nested while loop for username and password validation
+   correct_username = "admin"
+   correct_password = "python123"
+   max_attempts = 3
+
+   while True:
+      username = input("Enter username: ")
+      if username == correct_username:
+         attempts = 0
+         while attempts < max_attempts:
+            password = input("Enter password: ")
+            if password == correct_password:
+               print("Access Granted")
+               break
+            else:
+               print("Invalid password, try again")
+               attempts += 1
+         if attempts == max_attempts:
+            print("Too many failed attempts. Exiting...")
+            break
+      else:
+         print("Invalid username, try again")
+
+.. raw:: html
+
+   <!-- MCQ Section -->
+   <div class="mcq">
+      <p>Based on the code above, what will happen if the wrong password is entered 3 times, given the user enters the correct username?</p> 
+      <form name="Q4" id="Q4" data-component="password-validation" autocomplete="off">
+         <input type="radio" id="Q4A1" name="Q4" value=""><label for="Q4A1">The program will keep asking for the password indefinitely.</label> <span id="Q4A1-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A2" name="Q4" value="correct"><label for="Q4A2">The program will print "Too many failed attempts" and exit.</label> <span id="Q4A2-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A3" name="Q4" value=""><label for="Q4A3">The program will allow more than 3 password attempts.</label> <span id="Q4A3-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A4" name="Q4" value=""><label for="Q4A4">The program will crash after 3 failed attempts.</label> <span id="Q4A4-feedback" class="feedback"></span><br>
+         <input type="button" value="Check" onclick="checkRating('Q4')"><br>
+      </form>
+      <script id="Q4-answers" type="application/json">
+      [
+         {"ansid":"Q4A1", "answer":"The program will keep asking for the password indefinitely.", "feedback": "Incorrect. The program limits the number of password attempts to 3.", "result": "" , "points": 0},
+         {"ansid":"Q4A2", "answer":"The program will print 'Too many failed attempts' and exit.", "feedback": "Correct! After 3 incorrect password attempts, the program prints this message and exits.", "result": "correct", "points": 0},
+         {"ansid":"Q4A3", "answer":"The program will allow more than 3 password attempts.", "feedback": "Incorrect. The program terminates after 3 incorrect attempts.", "result": "" , "points": 0},
+         {"ansid":"Q4A4", "answer":"The program will crash after 3 failed attempts.", "feedback": "Incorrect. The program exits gracefully after 3 failed attempts.", "result": "" , "points": 0}
+      ]
+      </script>
+   </div>
+
+
 
 .. raw:: html
 
@@ -206,13 +311,14 @@ Problem 3: Understanding Nested Loops
    <script src="_static/ebook.js"></script>
    <link rel="stylesheet" type="text/css" href="_static/style.css" />
 
+    <div style="position: fixed; left: 20px; bottom: 20px">
+        <a href="1.while_loops.html" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Previous page</a>
+    </div>
+
+
+    <div style="position: fixed; right: 20px; bottom: 20px">
+        <a href="#" style="padding: 10px 20px; background-color: #A9A9A9; color: white; text-decoration: none; border-radius: 5px; pointer-events: none;">Next page</a>
+    </div>
+
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

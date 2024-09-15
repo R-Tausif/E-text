@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Python e-textbook'
+project = 'MindCraft'
 copyright = '2024, Rubaina'
 author = 'Rubaina'
 

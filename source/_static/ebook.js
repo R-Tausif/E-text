@@ -1,11 +1,15 @@
 let userProgress = {
     'while_loops': {
         questions: {},
-        badges: []
+        badges: [],
+        rating: 0,
+        system_rating: '',
     },
     'nested_while_loops': {
         questions: {},
-        badges: []
+        badges: [],
+        rating: 0,
+        system_rating: '',
     }
 };
 
@@ -60,11 +64,11 @@ function sendmcq(qid) {
     var moduleQuestions = userProgress[moduleId] ? userProgress[moduleId].questions : {};
 
     // Prevent further attempts if maximum attempts are reached
-    if (answeredQuestions[qid] && answeredQuestions[qid].attempts >= 2) {
-        alert("You have already attempted this question twice.");
-        displayPreviousAnswers(answeredQuestions[qid].lastAnswer);
-        return;
-    }
+    // if (answeredQuestions[qid] && answeredQuestions[qid].attempts >= 2) {
+    //     alert("You have already attempted this question twice.");
+    //     displayPreviousAnswers(answeredQuestions[qid].lastAnswer);
+    //     return;
+    // }
 
     var radios = form.querySelectorAll('input[type="radio"]');
     radios.forEach(function(radio) {
@@ -96,10 +100,24 @@ function sendmcq(qid) {
                         answeredQuestions[qid].feedback = answer.feedback;
                     }
 
+                    let points = 0;
+                    const attempts = answeredQuestions[qid].attempts;
+                    if (attempts === 1){
+                        points = 5;
+                    } else if (attempts === 2){
+                        points = 3;
+                    } else if (attempts === 3){
+                        points = 2;
+                    } else if (attempts === 4){
+                        points = 1;
+                    } else {
+                        points = 0;
+                    }
+
                     if (answer.result === 'correct') {
                         moduleQuestions[qid] = {correct: true};
                         if (!answeredQuestions[qid].pointsAwarded){
-                            updatePoints(answer.points);
+                            updatePoints(points);
                             answeredQuestions[qid].correct = true;
                             answeredQuestions[qid].pointsAwarded = true;
                         }
@@ -314,7 +332,7 @@ function showBadgeEarnedMessage(badgeName){
     // Append the message element to the body
     document.body.appendChild(messageElement);
 
-    // Remove the message after 3 seconds
+    // Remove the message after 5 seconds
     setTimeout(() => {
         document.body.removeChild(messageElement);
     }, 5000);
@@ -330,8 +348,8 @@ function resetProgress(){
     });
 
     userProgress = {
-        'while_loops': { questions: {}, badges: [] },
-        'nested_while_loops': { questions: {}, badges: [] }
+        'while_loops': { questions: {}, badges: [],  rating: 0, system_rating: '', },
+        'nested_while_loops': { questions: {}, badges: [], rating: 0, system_rating: '', }
     };
 
     // Save the reset state to storage
@@ -341,12 +359,114 @@ function resetProgress(){
 }
 
 
-// Progress indicator
+// Self-rating of knowledge
+function submitRating(){
+    var ratings = document.getElementsByName('knowledge-rating');
+    let selectedRating = null;
+
+    
+    // Check which rating was selected
+    for (var i = 0; i < ratings.length; i++) {
+        if (ratings[i].checked) {
+            selectedRating = ratings[i].value;
+            userProgress[getCurrentModuleId()].rating = selectedRating;
+            // localStorage.setItem('userRating', selectedRating);  // Store the rating
+            document.getElementById('rating-result').textContent = 'You rated your confidence as: ' + selectedRating;
+            break;
+        }
+    }
+
+    if (selectedRating === null) {
+        document.getElementById('rating-result').textContent = 'Please select your confidence level.';
+    }
+    document.getElementById('self-rating-form').reset();
+}
+
+function checkRating(qid) {
+    clearPreviousFeedback(qid);
+
+    // Check if the user rated their knowledge
+    let userRating = userProgress[getCurrentModuleId()].rating;
+    if (userRating === 0) {
+        document.getElementById(qid + '-feedback').textContent = 'Please submit your confidence rating before checking the answer.';
+        return;  
+    }
+
+    var answersData = JSON.parse(document.getElementById(qid + '-answers').textContent); 
+    // Get the selected answer for this question
+    var selectedAnswer = document.querySelector('input[name="' + qid + '"]:checked');
+    let feedbackMessage = "";
+    // let userRating = userProgress[getCurrentModuleId()].rating;
+    // console.log("in checkrating", userRating);
+
+    if (selectedAnswer) {
+        // Find the correct feedback in the JSON based on the selected answer
+        const selectedFeedback = answersData.find(answer => answer.ansid === selectedAnswer.id);
+        // console.log(selectedFeedback);
+
+        if (selectedFeedback) {
+            feedbackMessage = selectedFeedback.feedback;
+            const feedbackElement = document.getElementById(selectedFeedback.ansid + '-feedback');
+            feedbackElement.style.color = selectedFeedback.result === "correct" ? 'green' : 'red';
+            // console.log(feedbackMessage);
+
+            // If a user rating exists, provide feedback comparing their rating to performance
+            if (userRating > 0) {
+                compareRatingWithPerformance(selectedFeedback.ansid, feedbackMessage, selectedFeedback.result === 'correct', userRating);
+            } else {
+                document.getElementById(qid + '-feedback').textContent = feedbackMessage + " Please make sure to submit your self-rating.";
+            }
+        }
+    } else {
+        document.getElementById(qid + '-feedback').textContent = 'Please select an answer.';
+    }
+}
+
+function clearPreviousFeedback(qid) {
+    // Get all feedback spans related to this quiz
+    var feedbackElements = document.querySelectorAll('#' + qid + ' .feedback');
+    
+    // Loop through all feedback elements and clear their content
+    feedbackElements.forEach(function(feedbackElement) {
+        feedbackElement.textContent = ''; // Clear feedback text
+        feedbackElement.style.color = ''; // Reset any previous color applied
+    });
+}
+
+function compareRatingWithPerformance(qid, feedbackMessage, isCorrect, userRating){
+    // console.log(feedbackMessage, isCorrect, userRating);
+    let resultFeedback = "";
+    userRating = parseInt(userProgress[getCurrentModuleId()].rating, 10);
+    // console.log(userRating);
+
+    if (isCorrect){
+        if (userRating >= 4){
+            resultFeedback = feedbackMessage + " Your confident matches your performance! Well done!";
+            userProgress[getCurrentModuleId()].system_rating = 'Confidence Matches Performance';
+        }else {
+            resultFeedback = feedbackMessage + " You may have underestimated your understanding. Good job!";
+            userProgress[getCurrentModuleId()].system_rating = 'Underconfident but High Performance ';
+        }
+    } else {
+        if (userRating >=4){
+            resultFeedback = feedbackMessage + " Oh-Oh it seems that actually have to spend a bit more time in this module.";
+            userProgress[getCurrentModuleId()].system_rating = 'Confident but needs practice';
+        } else {
+            resultFeedback = feedbackMessage + " Your self-rating was accurate. Keep practicing!";
+            userProgress[getCurrentModuleId()].system_rating = 'Accurate but needs practice';
+            
+        }
+    }
+
+    // console.log( userProgress[getCurrentModuleId()].system_rating);
+     // Display the feedback to the user
+    document.getElementById(qid + '-feedback').textContent = resultFeedback;
+}
 
 
 // No reset functionality needed unless explicitly called by another user action
 window.onload = function() {
-    resetProgress();
+    // resetProgress();
     currentModuleId = getCurrentModuleId();
     loadProgressFromStorage();
     initializePoints();

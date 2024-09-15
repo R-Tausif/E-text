@@ -21,7 +21,7 @@
       });
    }
    </script>
-   <div id="maxPoints" data-max-points="20"></div>
+   <div id="maxPoints" data-max-points="15"></div>
    <div id= 'points-and-badges-container'>
       <div id="points-container">
             <img id="coin" src="_static/coin.png" alt="coin_icon"/>
@@ -34,6 +34,10 @@
          <div id="badge-count">Badges: 0</div>
       </div>
    </div>
+
+.. include:: user_profile.rst
+
+
 
 1. Introduction to loops
 ::::::::::::::::::::::::::::::::
@@ -100,14 +104,14 @@ continues as long as `count` is greater than 0. Inside the loop, it prints the c
 ----------------------------
 Problem 1: Reading Code 
 ----------------------------
-Consider the following snippet of code. What will it print?
+Consider the following snippet of code.
 
 .. code-block:: python
 
-   x = 3
-   while x < 8:
+   x = 1
+   while x < 4:
       print('Python is awesome!')
-      x += 2
+      x += 1
 
 .. raw:: html
 
@@ -122,9 +126,9 @@ Consider the following snippet of code. What will it print?
       </form>
       <script id="Q1-answers" type="application/json"> 
       [   
-      { "ansid":"Q1A1", "answer": "2", "feedback": "Incorrect. Remember, the loop increments by 2 starting from 3 and checks the condition before each iteration.", "result": "" , "points": 0} ,  
-      { "ansid":"Q1A2", "answer": "3", "feedback": "Correct! The loop starts at 3, increments by 2 each time, and stops before reaching 8.", "result": "correct", "points": 5  } ,  
-      { "ansid":"Q1A3", "answer": "4", "feedback": "Incorrect. Calculate how many iterations occur with the loop starting at 3 and increasing by 2 until it's less than 8.", "result": "" , "points": 0} ,  
+      { "ansid":"Q1A1", "answer": "2", "feedback": "Incorrect. Remember, the loop increments by 1 starting from 1 and checks the condition before each iteration.", "result": "" , "points": 0} ,  
+      { "ansid":"Q1A2", "answer": "3", "feedback": "Correct! The loop starts at 1, increments by 1 each time, and stops before reaching 4.", "result": "correct", "points": 5  } ,  
+      { "ansid":"Q1A3", "answer": "4", "feedback": "Incorrect. Calculate how many iterations occur with the loop starting at 1 and increasing by 1 until it's less than 4.", "result": "" , "points": 0} ,  
       { "ansid":"Q1A4", "answer": "5", "feedback": "Incorrect. Make sure to count the number of iterations based on the loop's starting point and increment.", "result": "" , "points": 0} 
       ]
       </script>
@@ -132,7 +136,7 @@ Consider the following snippet of code. What will it print?
 
 
 --------------------------------------
-Problem 2: Analyzing the value of `i` 
+Problem 2: Tracing the value of `i` 
 --------------------------------------
 
 .. code-block:: python
@@ -141,42 +145,42 @@ Problem 2: Analyzing the value of `i`
    i = 0
    while True:
       total += i
-      if total > 100:
+      if total > 10:
          break
       i += 1
-   print("The final value of i when the sum first exceeds 100 is:", i)
+   print("The final value of i when the sum first exceeds 10 is:", i)
 
 .. raw:: html
 
    <div class="mcq">
-      <p>Given the Python code that calculates the cumulative sum of integers until the sum exceeds 100, what is the final value of <code>i</code> when the sum first exceeds 100? (5 pts)</p>
+      <p>Given the Python code that calculates the cumulative sum of integers until the sum exceeds 10, what is the final value of <code>i</code> when the sum first exceeds 10? (5 pts)</p>
 
       <form name="Q2" id="Q2" data-component="loop-count" autocomplete="off">
-      <input type="radio" id="Q2A1" name="Q2" value="correct"><label for="Q2A1">14</label> <span id="Q2A1-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q2A2" name="Q2" value=""><label for="Q2A2">15</label> <span id="Q2A2-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q2A3" name="Q2" value=""><label for="Q2A3">16</label> <span id="Q2A3-feedback" class="feedback"> </span><br>
-      <input type="radio" id="Q2A4" name="Q2" value=""><label for="Q2A4">17</label> <span id="Q2A4-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A1" name="Q2" value=""><label for="Q2A1">4</label> <span id="Q2A2-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A2" name="Q2" value="correct"><label for="Q2A2">5</label> <span id="Q2A1-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A3" name="Q2" value=""><label for="Q2A3">6</label> <span id="Q2A3-feedback" class="feedback"> </span><br>
+      <input type="radio" id="Q2A4" name="Q2" value=""><label for="Q2A4">7</label> <span id="Q2A4-feedback" class="feedback"> </span><br>
       <input type="button" value="Check" onclick="sendmcq('Q2')"><br>
       </form>
       <script id="Q2-answers" type="application/json">
       [
-         {"ansid":"Q2A1", "answer":"14", "feedback": "Correct! The loop adds up to 105 when i is 14 and then breaks.", "result": "correct" , "points": 5},
-         {"ansid":"Q2A2", "answer":"15", "feedback": "Incorrect. The loop already broke when i was 14.", "result": "" , "points": 0},
-         {"ansid":"Q2A3", "answer":"16", "feedback": "Incorrect. The sum exceeds 100 before this point.", "result": "" , "points": 0},
-         {"ansid":"Q2A4", "answer":"17", "feedback": "Incorrect. The sum exceeds 100 before this point.", "result": "" , "points": 0}
+         {"ansid":"Q2A1", "answer":"4", "feedback": "Incorrect. The sum is only 10 when i is 4, which doesn't exceed 10.", "result": "" , "points": 0},
+         {"ansid":"Q2A2", "answer":"5", "feedback": "Correct! When i is 5, the sum becomes 15, exceeding 10..", "result": "correct" , "points": 5},
+         {"ansid":"Q2A3", "answer":"6", "feedback": "Incorrect. The loop breaks before i reaches 6.", "result": "" , "points": 0},
+         {"ansid":"Q2A4", "answer":"7", "feedback": "Incorrect. The loop has already broken before i reaches 7.", "result": "" , "points": 0}
       ]
       </script>
    </div>
 
 
 ------------------------------------------------
-Problem 3: True/False Question on While loop 
+Problem 3: While loop Execution Behaviour
 ------------------------------------------------
 
 .. raw:: html
 
    <div class="mcq">
-   <p>True or False: A <code>while</code> loop in Python will always execute at least once before checking its condition. (10 pts)</p>
+   <p>True or False: A <code>while</code> loop in Python will always execute at least once before checking its condition. (5 pts)</p>
    <form name="Q3" id="Q3" data-component="loop-true-false" autocomplete="off">
       <input type="radio" id="Q3A1" name="Q3" value=""><label for="Q3A1">True</label> <span id="Q3A1-feedback" class="feedback"></span><br>
       <input type="radio" id="Q3A2" name="Q3" value="correct"><label for="Q3A2">False</label> <span id="Q3A2-feedback" class="feedback"></span><br>
@@ -185,11 +189,88 @@ Problem 3: True/False Question on While loop
    <script id="Q3-answers" type="application/json">
    [
       {"ansid":"Q3A1", "answer":"True", "feedback": "Incorrect. The while loop in Python checks its condition before the first iteration.", "result": "" , "points": 0},
-      {"ansid":"Q3A2", "answer":"False", "feedback": "Correct! A while loop in Python checks its condition before executing the loop body for the first time.", "result": "correct" , "points": 10}
+      {"ansid":"Q3A2", "answer":"False", "feedback": "Correct! A while loop in Python checks its condition before executing the loop body for the first time.", "result": "correct" , "points": 5}
    ]
    </script>
    </div>
 
+
+.. raw:: html
+
+   <br>
+   <br>
+
+
+-----------------------------
+Check your understanding
+-----------------------------
+
+.. raw:: html
+
+   <!-- Self-Rating Section -->
+   <div class="self-rating">
+      <p>How confident are you in your understanding of loops?</p>
+
+      <form id="self-rating-form" style="display: flex; justify-content: space-between; align-items: center;">
+         <input type="radio" id="rating-1" name="knowledge-rating" value="1">
+         <label for="rating-1">1 - Not confident</label>
+
+         <input type="radio" id="rating-2" name="knowledge-rating" value="2">
+         <label for="rating-2">2 - Slightly confident</label>
+
+         <input type="radio" id="rating-3" name="knowledge-rating" value="3">
+         <label for="rating-3">3 - Moderately confident</label>
+
+         <input type="radio" id="rating-4" name="knowledge-rating" value="4">
+         <label for="rating-4">4 - Very confident</label>
+
+         <input type="radio" id="rating-5" name="knowledge-rating" value="5">
+         <label for="rating-5">5 - Extremely confident</label>
+
+         <button type="button" onclick="submitRating()" style="background-color: #9c5ce5; /* Blue background */
+            color: white;
+            cursor: pointer;
+            border: none; 
+            border-radius: 3px; 
+            margin-top: 10px;">Submit Rating</button>
+      </form>
+
+      <p id="rating-result"></p>
+   </div>
+
+.. raw:: html
+
+   <br><br>
+
+.. code-block:: python
+
+   # Simple while loop
+   i = 1
+   while i < 5:
+       print("Hello")
+       i += 1
+
+.. raw:: html
+
+   <!-- MCQ Section -->
+   <div class="mcq">
+      <p>Based on the code above, how many times will the word "Hello" be printed?</p>
+      <form name="Q4" id="Q4" data-component="loop-count" autocomplete="off">
+         <input type="radio" id="Q4A1" name="Q4" value=""><label for="Q4A1">2</label> <span id="Q4A1-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A2" name="Q4" value="correct"><label for="Q4A2">4</label> <span id="Q4A2-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A3" name="Q4" value=""><label for="Q4A3">5</label> <span id="Q4A3-feedback" class="feedback"></span><br>
+         <input type="radio" id="Q4A4" name="Q4" value=""><label for="Q4A4">6</label> <span id="Q4A4-feedback" class="feedback"></span><br>
+         <input type="button" value="Check" onclick="checkRating('Q4')"><br>
+      </form>
+      <script id="Q4-answers" type="application/json">
+      [
+         {"ansid":"Q4A1", "answer":"2", "feedback": "Incorrect. The loop runs 4 times, as i starts at 1 and increments by 1 each time.", "result": "" , "points": 0},
+         {"ansid":"Q4A2", "answer":"4", "feedback": "Correct! The loop runs 4 times and prints 'Hello' each time.", "result": "correct", "points": 0},
+         {"ansid":"Q4A3", "answer":"5", "feedback": "Incorrect. The loop stops before i reaches 5, so it prints 4 times.", "result": "" , "points": 0},
+         {"ansid":"Q4A4", "answer":"6", "feedback": "Incorrect. The loop will stop once i equals 5, so it prints 4 times.", "result": "" , "points": 0}
+      ]
+      </script>
+   </div>
 
 
 .. raw:: html
@@ -198,20 +279,19 @@ Problem 3: True/False Question on While loop
       <button id="markComplete" onclick="markModuleAsComplete()">Mark as Complete</button>
    </div>
 
-
    <script src="_static/ebook.js"></script>
    <link rel="stylesheet" type="text/css" href="_static/style.css"/>
 
 
+    <div style="position: fixed; left: 20px; bottom: 20px">
+        <a href="index.html" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Previous page</a>
+    </div>
+
+
+    <div style="position: fixed; right: 20px; bottom: 20px">
+        <a href="2.nested_while.html" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Next page</a>
+    </div>
+
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
 
-   2.nested_while
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
